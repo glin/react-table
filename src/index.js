@@ -691,9 +691,16 @@ export default class ReactTable extends Methods(Lifecycle(Component)) {
                 }
               }
 
+              // Only add click handler if the cell is clickable to prevent screen
+              // readers from announcing the element as "clickable".
+              //
+              // Originally, a click handler was always being added:
+              // const resolvedOnExpanderClick = useOnExpanderClick
+              //  ? onExpanderClick
+              //  : () => {}
               const resolvedOnExpanderClick = useOnExpanderClick
                 ? onExpanderClick
-                : () => {}
+                : undefined
 
               // If there are multiple onClick events, make sure they don't override eachother. This should maybe be expanded to handle all function attributes
               const interactionProps = {
@@ -702,13 +709,13 @@ export default class ReactTable extends Methods(Lifecycle(Component)) {
 
               if (tdProps.rest.onClick) {
                 interactionProps.onClick = e => {
-                  tdProps.rest.onClick(e, () => resolvedOnExpanderClick(e))
+                  tdProps.rest.onClick(e, resolvedOnExpanderClick ? (() => resolvedOnExpanderClick(e)) : undefined)
                 }
               }
 
               if (columnProps.rest.onClick) {
                 interactionProps.onClick = e => {
-                  columnProps.rest.onClick(e, () => resolvedOnExpanderClick(e))
+                  columnProps.rest.onClick(e, resolvedOnExpanderClick ? () => resolvedOnExpanderClick(e) : undefined)
                 }
               }
 

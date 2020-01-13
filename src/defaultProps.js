@@ -180,9 +180,14 @@ export default {
     return (
       <div
         className={classnames(className, 'rt-th')}
-        onClick={e => {
-          toggleSort && toggleSort(e)
-        }}
+        // Only add click handler if the header is clickable to prevent screen
+        // readers from announcing the element as "clickable".
+        //
+        // Originally, a click handler was always being added:
+        // onClick={e => {
+        //   toggleSort && toggleSort(e)
+        // }}
+        onClick={toggleSort ? e => toggleSort(e) : undefined}
         {...rest}
       >
         {children}
