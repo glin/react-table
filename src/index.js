@@ -381,9 +381,9 @@ export default class ReactTable extends Methods(Lifecycle(Component)) {
             width: _.asPx(width),
             maxWidth: _.asPx(maxWidth),
           }}
-          toggleSort={e => {
-            isSortable && this.sortColumn(column, e.shiftKey)
-          }}
+          // Only add click handler if the header is clickable to prevent screen
+          // readers from announcing the element as "clickable".
+          toggleSort={isSortable ? e => this.sortColumn(column, e.shiftKey) : undefined}
           {...rest}
         >
           <div className={classnames(isResizable && 'rt-resizable-header-content')}>
