@@ -632,9 +632,13 @@ export default class ReactTable extends Methods(Lifecycle(Component)) {
                 // Make it expandable by defualt
                 cellInfo.expandable = true
                 useOnExpanderClick = true
-                // If pivoted, has no subRows, and does not have a subComponent, do not make expandable
-                if (cellInfo.pivoted && !cellInfo.subRows && !SubComponent) {
+                // Always disable expansion if pivoted and has no subRows. Originally,
+                // pivoted cells with SubComponents could be clicked to expand the row,
+                // which caused issues for the custom multi-column row details.
+                if (cellInfo.pivoted && !cellInfo.subRows) {
                   cellInfo.expandable = false
+                  // Also ensure that a click handler is not passed to an unclickable cell
+                  useOnExpanderClick = false
                 }
               }
 
