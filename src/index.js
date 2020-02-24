@@ -471,7 +471,8 @@ export default class ReactTable extends Methods(Lifecycle(Component)) {
       )
 
       return (
-        <ThComponent
+        // Render filter cells as table cells, rather than headers, for easier styling
+        <TdComponent
           key={i + '-' + column.id}
           className={classnames(classes)}
           style={{
@@ -493,7 +494,7 @@ export default class ReactTable extends Methods(Lifecycle(Component)) {
               defaultProps.column.Filter
             )
             : null}
-        </ThComponent>
+        </TdComponent>
       )
     }
 
@@ -519,10 +520,7 @@ export default class ReactTable extends Methods(Lifecycle(Component)) {
       return (
         <TrGroupComponent key={rowInfo.nestingPath.join('_')} {...trGroupProps}>
           <TrComponent
-            className={classnames(
-              trProps.className,
-              row._viewIndex % 2 ? '-even' : '-odd'
-            )}
+            className={trProps.className}
             style={trProps.style}
             {...trProps.rest}
           >
@@ -776,7 +774,6 @@ export default class ReactTable extends Methods(Lifecycle(Component)) {
           <TrComponent
             className={classnames(
               '-padRow',
-              (pageRows.length + i) % 2 ? '-even' : '-odd',
               trProps.className
             )}
             style={trProps.style || {}}
