@@ -1,6 +1,6 @@
 {
   "name": "@glin/react-table",
-  "version": "6.7.0-5",
+  "version": "6.7.0-6",
   "description": "A fast, lightweight, opinionated table and datagrid built on React",
   "license": "MIT",
   "homepage": "https://github.com/react-tools/react-table#readme",
@@ -38,8 +38,7 @@
     "docs:build": "yarn build && cd docs && yarn && yarn build"
   },
   "dependencies": {
-    "classnames": "^2.2.5",
-    "eslint-config-react-tools": "^1.0.10"
+    "classnames": "^2.2.5"
   },
   "peerDependencies": {
     "react": "^15.x.x || ^16.x.x"
@@ -52,6 +51,7 @@
     "babel-preset-react": "6.11.1",
     "babel-preset-stage-2": "6.13.0",
     "eslint": "^4.1.1",
+    "eslint-config-react-tools": "^1.0.10",
     "eslint-config-standard": "^10.2.1",
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-node": "^5.2.0",
