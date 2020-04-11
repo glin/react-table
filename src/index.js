@@ -886,15 +886,15 @@ export default class ReactTable extends Methods(Lifecycle(Component)) {
 
       const classes = [
         tFootTdProps.className,
-        column.className,
-        columnProps.className,
+        column.footerClassName,
+        columnProps.footerClassName,
         columnFooterProps.className,
       ]
 
       const styles = {
         ...tFootTdProps.style,
-        ...column.style,
-        ...columnProps.style,
+        ...column.footerStyle,
+        ...columnProps.footerStyle,
         ...columnFooterProps.style,
       }
 
