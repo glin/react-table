@@ -1,6 +1,6 @@
 {
   "name": "@glin/react-table",
-  "version": "6.7.0-7",
+  "version": "6.7.0-8",
   "description": "A fast, lightweight, opinionated table and datagrid built on React",
   "license": "MIT",
   "homepage": "https://github.com/react-tools/react-table#readme",

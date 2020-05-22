@@ -362,13 +362,30 @@ export default class ReactTable extends Methods(Lifecycle(Component)) {
 
       const isSortable = _.getFirstDefined(column.sortable, sortable, false)
 
+      // Don't wrap header content in unnecessary div if not resizable
+      let content
+      if (isResizable) {
+        content = (
+          <div className="rt-resizable-header-content">
+            {_.normalizeComponent(column.Header, {
+              data: sortedData,
+              column: column,
+            })}
+          </div>
+        )
+      } else {
+        content = _.normalizeComponent(column.Header, {
+          data: sortedData,
+          column: column,
+        })
+      }
+
       return (
         <ThComponent
           key={i + '-' + column.id}
           className={classnames(
             classes,
             isResizable && 'rt-resizable-header',
-            sort ? (sort.desc ? '-sort-desc' : '-sort-asc') : '',
             isSortable && '-cursor-pointer',
             !show && '-hidden',
             pivotBy &&
@@ -386,12 +403,7 @@ export default class ReactTable extends Methods(Lifecycle(Component)) {
           toggleSort={isSortable ? e => this.sortColumn(column, e.shiftKey) : undefined}
           {...rest}
         >
-          <div className={classnames(isResizable && 'rt-resizable-header-content')}>
-            {_.normalizeComponent(column.Header, {
-              data: sortedData,
-              column: column,
-            })}
-          </div>
+          {content}
           {resizer}
         </ThComponent>
       )
